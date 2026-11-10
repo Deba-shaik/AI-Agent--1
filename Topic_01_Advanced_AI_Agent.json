@@ -1,0 +1,101 @@
+{
+  "name": "Topic_01_Advanced_AI_Agent",
+  "nodes": [
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.chatTrigger",
+      "typeVersion": 1.5,
+      "position": [
+        -448,
+        0
+      ],
+      "id": "d876ee9c-a28f-4bc6-97e7-89b7427f1295",
+      "name": "When chat message received",
+      "webhookId": "0d87a9ec-8f82-47ec-9c8b-f908b2c0b015"
+    },
+    {
+      "parameters": {
+        "options": {
+          "systemMessage": "You are a professional AI assistant. Answer user questions clearly, accurately, and concisely. Follow instructions carefully and provide helpful responses."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -224,
+        0
+      ],
+      "id": "40d55b07-c62b-4aa8-acf4-639c90951394",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "qwen/qwen-2.5-7b-instruct",
+          "mode": "list",
+          "cachedResultName": "qwen/qwen-2.5-7b-instruct"
+        },
+        "responsesApiEnabled": false,
+        "options": {
+          "maxTokens": 500,
+          "temperature": 0
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        -240,
+        240
+      ],
+      "id": "720c21cd-2f1b-4ba3-916a-92bf36c3d871",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "vargawTX6deq1kgr",
+          "name": "OpenAI account 20"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When chat message received": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate"
+  },
+  "versionId": "28e1381b-9a70-405b-983e-0134ca0043fa",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "a03c7678428ef19ededbf912f16f7d5798ec7b9ab4c17f2a2def6a9e791e7215"
+  },
+  "nodeGroups": [],
+  "id": "56yDggYSqoBKdIoR",
+  "tags": []
+}
